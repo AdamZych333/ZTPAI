@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+
+    <title>
+        {% block title %}
+            HOME
+        {% endblock %}
+    </title>
+    {% block stylesheets %}
+        {#{{ encore_entry_link_tags('app') }}#}
+    {% endblock %}
+
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</head>
+<body>
+<nav>
+    <img src="{{ asset('img/logo.svg') }}">
+    <ul>
+        <li>
+            <i class="fas fa-home"></i>
+            <a href="#" class="button">Home</a>
+        </li>
+        <li>
+            <i class="fas fa-trophy"></i>
+            <a href="#" class="button">TOP10</a>
+        </li>
+        <li>
+            <i class="fas fa-user"></i>
+            <a href="#" class="button">Users</a>
+        </li>
+        <li>
+            <i class="fas fa-plus-circle"></i>
+            <a href="#" class="button">Add</a>
+        </li>
+    </ul>
+</nav>
+<main>
+    <header>
+        <div class="search-bar">
+            <form>
+                <input placeholder="Search">
+            </form>
+        </div>
+        <div class="login">
+            Login
+        </div>
+    </header>
+    <div class="add">
+        <form class="add" action="addFile" method="POST" ENCTYPE="multipart/form-data">
+            <input name="title" type="text" placeholder="Title">
+            <div>
+                <input type="file" name="file">
+                <i class="fas fa-plus-circle"></i>
+                <p>Choose a file.</p>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</main>
+</body>
