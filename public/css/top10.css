@@ -1,0 +1,14 @@
+.sort{
+    display: flex;
+    justify-content: space-around;
+    margin: 3em 2em;
+}
+
+.sort > div{
+    background: #94D1FF;
+    border: 1px solid black;
+    border-radius: 1em;
+    padding: 1em;
+    width: 5vw;
+    text-align: center;
+}

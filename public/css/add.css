@@ -1,0 +1,25 @@
+.main-container{
+    padding: 7em;
+}
+
+.add-container{
+    background: #4E5AFF;
+}
+
+.add{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+.add > input{
+    text-align: center;
+}
+
+.add > div{
+    margin: 1em 0;
+    text-align: center;
+}
+
+

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <head>
     <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/add.css') }}">
     <title>
         {% block title %}
             HOME
@@ -48,16 +49,18 @@
             Login
         </div>
     </header>
-    <div class="add">
-        <form class="add" action="addFile" method="POST" ENCTYPE="multipart/form-data">
-            <input name="title" type="text" placeholder="Title">
-            <div>
-                <input type="file" name="file">
-                <i class="fas fa-plus-circle"></i>
-                <p>Choose a file.</p>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+    <section class="main-container">
+        <div class="add-container">
+            <form class="add" action="addFile" method="POST" ENCTYPE="multipart/form-data">
+                <input name="title" type="text" placeholder="Title">
+                <div>
+                    <input type="file" name="file">
+                    <i class="fas fa-plus-circle"></i>
+                    <p>Choose a file.</p>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
 </main>
 </body>

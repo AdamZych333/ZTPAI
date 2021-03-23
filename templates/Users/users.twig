@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
     <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/users.css') }}">
     <title>
         {% block title %}
             HOME
@@ -47,47 +49,14 @@
             Login
         </div>
     </header>
-    <div class="find">
-        <form>
-            <input placeholder="Find user">
-        </form>
-    </div>
-    <section class="users">
-        <div id="user-1">
-            <div class="name">
-                Name
-            </div>
-            <div class="stats">
-                Joined date
-                Last online
-            </div>
+    <section class="main-container">
+        <div class="find">
+            <form>
+                <input placeholder="Find user">
+            </form>
         </div>
-        <div id="user-2">
-            <div class="name">
-                Name
-            </div>
-            <div class="stats">
-                Joined date
-                Last online
-            </div>
-        </div>
-        <div id="user-3">
-            <div class="name">
-                Name
-            </div>
-            <div class="stats">
-                Joined date
-                Last online
-            </div>
-        </div>
-        <div id="user-4">
-            <div class="name">
-                Name
-            </div>
-            <div class="stats">
-                Joined date
-                Last online
-            </div>
+        <div class="users">
+
         </div>
     </section>
 </main>
