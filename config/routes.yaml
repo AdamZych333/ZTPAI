@@ -4,20 +4,20 @@
 
 login:
   path: /
-  controller: App\Controller\LoginController::login
+  controller: App\Controller\MainController::login
 
 home:
   path: /home
-  controller: App\Controller\HomeController::home
+  controller: App\Controller\MainController::home
 
 top10:
   path: /top10
-  controller: App\Controller\TOP10Controller::top10
+  controller: App\Controller\MainController::top10
 
 users:
   path: /users
-  controller: App\Controller\UsersController::users
+  controller: App\Controller\MainController::users
 
 add:
   path: /add
-  controller: App\Controller\AddController::add
+  controller: App\Controller\MainController::add

@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/add.css') }}">
     <title>
         {% block title %}
-            HOME
+            ADD
         {% endblock %}
     </title>
     {% block stylesheets %}
@@ -52,12 +52,8 @@
     <section class="main-container">
         <div class="add-container">
             <form class="add" action="addFile" method="POST" ENCTYPE="multipart/form-data">
-                <input name="title" type="text" placeholder="Title">
-                <div>
-                    <input type="file" name="file">
-                    <i class="fas fa-plus-circle"></i>
-                    <p>Choose a file.</p>
-                </div>
+                <input class="title" type="text" placeholder="Title">
+                <input class="upload" type="file">
                 <button type="submit">Submit</button>
             </form>
         </div>

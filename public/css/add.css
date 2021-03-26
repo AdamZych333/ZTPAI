@@ -1,9 +1,14 @@
 .main-container{
-    padding: 7em;
+    display: flex;
+    justify-content: center;
+    padding: 7em
 }
 
 .add-container{
-    background: #4E5AFF;
+    width: fit-content;
+    height: fit-content;
+    background: #717398 0% 0% no-repeat padding-box;
+    border-radius: 2em;
 }
 
 .add{
@@ -13,13 +18,23 @@
     padding: 2em;
 }
 
-.add > input{
+.add input, button{
     text-align: center;
-}
-
-.add > div{
     margin: 1em 0;
-    text-align: center;
+    font-size: 1.7em;
 }
 
+.add input, button:focus{
+    outline: none;
+}
 
+.title{
+    height: 2em;
+    width: 30vw;
+    border-radius: 1em;
+}
+
+.add button {
+    background: #6ca5c4;
+    border: 1px solid #6790ff;
+}

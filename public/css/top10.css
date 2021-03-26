@@ -5,10 +5,26 @@
 }
 
 .sort > div{
-    background: #94D1FF;
-    border: 1px solid black;
-    border-radius: 1em;
-    padding: 1em;
-    width: 5vw;
-    text-align: center;
+    padding: .9rem 1.7rem;
+    color: #ffffff;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    background: hsl(0, 0%, 12%);
+    border: solid 1px #1e1e1e;
+    box-shadow: inset 0 0 0 2px #ffffff;
+    margin-right: 1em;
+}
+
+.sort > div:hover {
+    text-decoration: underline;
+    background: var(hsl(0, 0%, 20%));
+    box-shadow: inset 0 0 0 4px #ffffff;
+}
+
+.sort > div:active {
+    background: hsl(0, 0%, 30%);
+}
+
+.sort > div:visited {
+    background: hsl(0, 0%, 20%);
 }

@@ -79,7 +79,7 @@ header{
 }
 
 .login{
-    background: #4036B2 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #7080FA 0%, #4036B2 100%) 0% 0% no-repeat padding-box;
     border-radius: 1.5em;
     color: white;
     letter-spacing: 0.1em;
