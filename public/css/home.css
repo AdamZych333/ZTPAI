@@ -1,0 +1,58 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    padding: 5em 10em;
+    overflow-y: auto;
+}
+
+.meme{
+    display: flex;
+    background: #777676 0% 0% no-repeat padding-box;
+    padding: 2em;
+    margin: 1em 0 3em 0;
+}
+
+.meme img{
+    height: auto;
+    width: 50%;
+    margin-right: 2em;
+}
+
+.info{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 4em;
+}
+
+.info h1{
+    font-size: 2.5em;
+    margin: 0.5em 0;
+}
+
+.description, .social-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.description h2{
+    margin: 0.5em 0;
+}
+
+
+.fa-thumbs-up {
+    color: #039D2C;
+}
+
+.fa-thumbs-up>span, .fa-thumbs-down>span{
+    color: black;
+}
+
+.fa-thumbs-down {
+    color: red;
+}
+
+

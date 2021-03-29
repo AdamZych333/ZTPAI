@@ -6,6 +6,10 @@ login:
   path: /
   controller: App\Controller\MainController::login
 
+register:
+  path: /register
+  controller: App\Controller\MainController::register
+
 home:
   path: /home
   controller: App\Controller\MainController::home

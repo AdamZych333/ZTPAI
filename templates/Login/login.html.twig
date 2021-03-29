@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet"/>
+    <title>LOGIN PAGE</title>
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        <img src="{{ asset('img/logo.svg') }}">
+    </div>
+    <div class="login-container">
+        <form class="log-in" action="login" method="POST">
+            <p>{{ message }}</p>
+            <input name="email" type="text" placeholder="email@email.com">
+            <input name="password" type="password" placeholder="password">
+            <button type="submit">LOGIN</button>
+        </form>
+    </div>
+    <div>
+        <a class="switch" href="{{ path('register') }}">Register</a>
+    </div>
+</div>
+</body>

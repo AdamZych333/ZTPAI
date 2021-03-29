@@ -24,3 +24,26 @@
     border-bottom: 3px solid #333333;
     font-family: Roboto Slab, sans-serif;
 }
+
+.users{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+}
+
+.user{
+    display: flex;
+    flex-direction: row;
+    background: #777676 0% 0% no-repeat padding-box;
+    padding: 1em;
+}
+
+.info{
+    margin: 0 0 0 1em;
+}
+
+.info h1{
+    font-size: 2em;
+    margin: 0.5em 0;
+}
+

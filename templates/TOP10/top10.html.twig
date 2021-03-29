@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/top10.css') }}">
+    <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <title>TOP10</title>
+</head>
+<body>
+    {{ include('_nav.html.twig') }}
+    <main>
+        {{ include('_header.html.twig') }}
+        <section class="main-container">
+            <div class="sort">
+                <div id="Day">Day</div>
+                <div id="Week">Week</div>
+                <div id="Month">Month</div>
+                <div id="All time">All time</div>
+            </div>
+            {{ include('_memes.html.twig') }}
+        </section>
+    </main>
+</body>

@@ -1,0 +1,23 @@
+<div class="memes">
+    {% for meme in memes %}
+        {% set userDisplay = user.getName ~ " " ~ user.getSurname %}
+        <div class="meme" id="{{ meme.getId }}">
+            <img src="{{ asset(meme.getImage) }}">
+            <div class="info">
+                <h1>{{ meme.getTitle }}</h1>
+                <div class="description">
+                    <h2>{{ userDisplay }}</h2>
+                    <h2>{{ meme.getDate }}</h2>
+                </div>
+                <div class="social-section">
+                    <i class="fas fa-thumbs-up">
+                        <span>{{ meme.getLikes }}</span>
+                    </i>
+                    <i class="fas fa-thumbs-down">
+                        <span>{{ meme.getDislikes }}</span>
+                    </i>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

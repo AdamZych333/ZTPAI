@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/users.css') }}">
+    <title>USERS</title>
+</head>
+<body>
+    {{ include('_nav.html.twig') }}
+    <main>
+        {{ include('_header.html.twig') }}
+        <section class="main-container">
+            <div class="find">
+                <form>
+                    <input placeholder="Find user">
+                </form>
+            </div>
+            <div class="users">
+                {% for user in users %}
+                    {% set userDisplay = user.getName ~ " " ~ user.getSurname %}
+                    <div class="user">
+                        <img src="{{ asset(user.getImage) }}">
+                        <div class="info">
+                            <h1>{{ userDisplay }}</h1>
+                            <h2>{{ user.getJoinedDate }}</h2>
+                            <h2>{{ user.getLastOnline }}</h2>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
