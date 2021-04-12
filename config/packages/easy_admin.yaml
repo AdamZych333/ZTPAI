@@ -1,0 +1,8 @@
+easy_admin:
+    entities:
+        # List the entity class name you want to manage
+        - App\Entity\User
+        - App\Entity\Meme
+        - App\Entity\Comment
+        - App\Entity\Likes
+        - App\Entity\Dislikes

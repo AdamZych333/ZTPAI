@@ -77,6 +77,7 @@
 
 .fa-thumbs-up {
     color: #039D2C;
+    font-size: 1.5em;
 }
 
 .fa-thumbs-up>span, .fa-thumbs-down>span{
@@ -85,4 +86,5 @@
 
 .fa-thumbs-down {
     color: red;
+    font-size: 1.5em;
 }

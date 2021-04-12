@@ -34,7 +34,15 @@
     border-radius: 1em;
 }
 
+.upload:hover{
+    cursor: pointer;
+}
+
 .add button {
     background: #6ca5c4;
     border: 1px solid #6790ff;
+}
+
+.add button:hover {
+    cursor: pointer;
 }

@@ -4,24 +4,24 @@
 
 login:
   path: /
-  controller: App\Controller\MainController::login
+  controller: App\Controller\SecurityController::login
 
 register:
   path: /register
-  controller: App\Controller\MainController::register
+  controller: App\Controller\SecurityController::register
 
 home:
   path: /home
-  controller: App\Controller\MainController::home
+  controller: App\Controller\HomeController::index
 
 top10:
   path: /top10
-  controller: App\Controller\MainController::top10
+  controller: App\Controller\TOP10Controller::index
 
-users:
-  path: /users
-  controller: App\Controller\MainController::users
+user:
+  path: /user
+  controller: App\Controller\UserController::index
 
 add:
   path: /add
-  controller: App\Controller\MainController::add
+  controller: App\Controller\AddController::index

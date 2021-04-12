@@ -19,11 +19,10 @@
                 {% for user in users %}
                     {% set userDisplay = user.getName ~ " " ~ user.getSurname %}
                     <div class="user">
-                        <img src="{{ asset(user.getImage) }}">
+                        <img src="img/users/{{ asset(user.getImage) }}">
                         <div class="info">
                             <h1>{{ userDisplay }}</h1>
-                            <h2>{{ user.getJoinedDate }}</h2>
-                            <h2>{{ user.getLastOnline }}</h2>
+                            <h2>{{ user.getJoinedAt|date("d-m-Y") }}</h2>
                         </div>
                     </div>
                 {% endfor %}
