@@ -73,18 +73,3 @@
 .description h2{
     margin: 0.5em 0;
 }
-
-
-.fa-thumbs-up {
-    color: #039D2C;
-    font-size: 1.5em;
-}
-
-.fa-thumbs-up>span, .fa-thumbs-down>span{
-    color: black;
-}
-
-.fa-thumbs-down {
-    color: red;
-    font-size: 1.5em;
-}

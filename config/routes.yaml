@@ -1,7 +1,3 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
 login:
   path: /
   controller: App\Controller\SecurityController::login
@@ -25,3 +21,4 @@ user:
 add:
   path: /add
   controller: App\Controller\AddController::index
+

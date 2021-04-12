@@ -23,7 +23,7 @@ class HomeController extends AbstractController
      */
     public function index(MemeRepository $memeRepository): Response{
         return $this->render('Home/home.html.twig', [
-            'memes' => $memeRepository->findAll(),
+            'memes' => $memeRepository->findAll()
         ]);
     }
 }

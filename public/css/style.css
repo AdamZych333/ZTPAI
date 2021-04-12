@@ -75,7 +75,8 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 1em 2em;
-    background: #777676;
+    background: #8d9ba0;
+    border-bottom: black 1px solid;
 }
 
 .login{
@@ -108,4 +109,26 @@ header{
 .main-container{
     height: 95vh;
     background: #585858;
+}
+
+.fa-thumbs-up {
+    color: #039D2C;
+    font-size: 1.5em;
+}
+
+.fa-thumbs-down {
+    color: red;
+    font-size: 1.5em;
+}
+
+.fa-thumbs-up:hover, .fa-thumbs-down{
+    cursor: pointer;
+}
+
+.fa-thumbs-up>span, .fa-thumbs-down>span{
+    color: black;
+}
+
+.fa-thumbs-up>span:hover, .fa-thumbs-down>span:hover{
+    cursor: default;
 }
