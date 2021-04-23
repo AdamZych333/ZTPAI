@@ -2,11 +2,23 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * @UniqueEntity("slug")
+ *
+ * @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="comment:list"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="comment:item"}}},
+ *     order={"createdAt"="DESC"},
+ *     paginationEnabled=false
+ * )
  */
 class Comment
 {
@@ -14,28 +26,42 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"comment:list", "comment:item"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     *
+     * @Groups({"comment:list", "comment:item"})
      */
     private $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
+     *
+     * @Groups({"comment:list", "comment:item"})
      */
     private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity=Meme::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
+     *
+     * @Groups({"comment:list", "comment:item"})
      */
     private $meme;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
+     *
+     * @Groups({"comment:list", "comment:item"})
      */
     private $createdAt;
 

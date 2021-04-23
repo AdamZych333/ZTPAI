@@ -2,14 +2,23 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="user:list"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="user:item"}}},
+ *     order={"joined_at"="DESC"},
+ *     paginationEnabled=false
+ * )
  */
 class User
 {
@@ -17,36 +26,56 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"user:list", "user:item"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     *
+     * @Groups({"user:list", "user:item"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     *
+     * @Groups({"user:list", "user:item"})
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     *
+     * @Groups({"user:list", "user:item"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     *
+     * @Groups({"user:list", "user:item"})
      */
     private $surname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     *
+     * @Groups({"user:list", "user:item"})
      */
     private $image;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank
+     *
+     * @Groups({"user:list", "user:item"})
      */
     private $joined_at;
 

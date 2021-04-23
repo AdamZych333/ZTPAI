@@ -2,13 +2,22 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\MemeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MemeRepository::class)
+ * @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="meme:list"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="meme:item"}}},
+ *     order={"createdAt"="DESC"},
+ *     paginationEnabled=false
+ * )
  */
 class Meme
 {
@@ -16,42 +25,64 @@ class Meme
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"meme:list", "meme:item"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     *
+     * @Groups({"meme:list", "meme:item"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     *
+     * @Groups({"meme:list", "meme:item"})
      */
     private $likes;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     *
+     * @Groups({"meme:list", "meme:item"})
      */
     private $dislikes;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank
+     *
+     * @Groups({"meme:list", "meme:item"})
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     *
+     * @Groups({"meme:list", "meme:item"})
      */
     private $image;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
+     *
+     * @Groups({"meme:list", "meme:item"})
      */
     private $created_by;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="meme", orphanRemoval=true)
+     *
+     * @Groups({"meme:list", "meme:item"})
      */
     private $comments;
 
