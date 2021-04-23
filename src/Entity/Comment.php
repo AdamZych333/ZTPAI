@@ -23,13 +23,13 @@ class Comment
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class)
+     * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity=meme::class, inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity=Meme::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $meme;

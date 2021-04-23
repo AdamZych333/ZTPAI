@@ -1,4 +1,7 @@
 {
+    "api-platform/api-pack": {
+        "version": "v1.3.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
@@ -356,6 +359,9 @@
     },
     "symfony/security-http": {
         "version": "v5.2.6"
+    },
+    "symfony/serializer-pack": {
+        "version": "v1.0.4"
     },
     "symfony/service-contracts": {
         "version": "v2.2.0"
