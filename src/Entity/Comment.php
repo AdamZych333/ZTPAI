@@ -34,6 +34,11 @@ class Comment
      */
     private $meme;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,22 @@ class Comment
     public function setMeme(?meme $meme): self
     {
         $this->meme = $meme;
+
+        return $this;
+    }
+
+    public function __toString(): string{
+        return $this->meme->getTitle().":".$this->id;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
