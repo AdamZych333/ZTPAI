@@ -15,7 +15,7 @@ top10:
   controller: App\Controller\TOP10Controller::index
 
 user:
-  path: /user
+  path: /users
   controller: App\Controller\UserController::index
 
 add:

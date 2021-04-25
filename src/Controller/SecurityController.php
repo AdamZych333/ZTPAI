@@ -21,7 +21,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/", name="register")
+     * @Route("/register", name="register")
      */
     public function register(): Response
     {

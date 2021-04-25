@@ -13,7 +13,7 @@ use Twig\Error\SyntaxError;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/users", name="users")
      * @param UserRepository $userRepository
      * @return Response
      * @throws LoaderError
