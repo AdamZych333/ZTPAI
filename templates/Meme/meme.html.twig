@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/meme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+    <title>HOME</title>
+</head>
+<body>
+    {{ include('_nav.html.twig') }}
+    <main>
+        {{ include('_header.html.twig') }}
+        <section class="main-container">
+            {% set userDisplay = meme.getCreatedBy.getName ~ " " ~ meme.getCreatedBy.getSurname %}
+            <div class="meme">
+                <h1> {{ meme.getTitle }} </h1>
+                <img src="/uploads/{{ asset(meme.getImage) }}">
+                <div class="description">
+                    <h2>{{ userDisplay }}</h2>
+                    <h2>{{ meme.getCreatedAt|date("d-m-Y") }}</h2>
+                </div>
+                <div class="social-section">
+                    <i class="fas fa-thumbs-up">
+                        <span>{{ meme.getLikes }}</span>
+                    </i>
+                    <i class="fas fa-thumbs-down">
+                        <span>{{ meme.getDislikes }}</span>
+                    </i>
+                </div>
+            </div>
+            <div class="comments">
+                {% for comment in meme.getComments %}
+                    <div class="comment">
+                        {% set userDisplay = comment.getAuthor.getName ~ " " ~ comment.getAuthor.getSurname %}
+                        <img src="/img/users/{{ asset(comment.getAuthor.getImage) }}">
+                        <div>
+                            <div class="info">
+                                <p>{{ userDisplay }}</p>
+                                <p>{{ comment.getCreatedAt|date() }}</p>
+                            </div>
+                            <p> {{ comment.getContent }} </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
