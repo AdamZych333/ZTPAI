@@ -66,6 +66,24 @@
     margin: 0 1vw 0 0;
 }
 
+.pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.pages > a{
+    color: white;
+    border: none;
+}
+
+.pages > a:hover{
+    color: #7080FA;
+    cursor: pointer;
+}
+
+
+
 
 
 

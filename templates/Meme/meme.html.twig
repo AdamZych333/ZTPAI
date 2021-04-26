@@ -28,19 +28,32 @@
                 </div>
             </div>
             <div class="comments">
-                {% for comment in meme.getComments %}
-                    <div class="comment">
-                        {% set userDisplay = comment.getAuthor.getName ~ " " ~ comment.getAuthor.getSurname %}
-                        <img src="/img/users/{{ asset(comment.getAuthor.getImage) }}">
-                        <div>
-                            <div class="info">
-                                <p>{{ userDisplay }}</p>
-                                <p>{{ comment.getCreatedAt|date() }}</p>
+                {% if comments|length > 0 %}
+                    <p>There are {{ comments|length }} comments.</p>
+                    {% for comment in comments %}
+                        <div class="comment">
+                            {% set userDisplay = comment.getAuthor.getName ~ " " ~ comment.getAuthor.getSurname %}
+                            <img src="/img/users/{{ asset(comment.getAuthor.getImage) }}">
+                            <div>
+                                <div class="info">
+                                    <p>{{ userDisplay }}</p>
+                                    <p>{{ comment.getCreatedAt|date() }}</p>
+                                </div>
+                                <p> {{ comment.getContent }} </p>
                             </div>
-                            <p> {{ comment.getContent }} </p>
                         </div>
+                    {% endfor %}
+                    <div class="pages">
+                        {% if previous >= 0 %}
+                            <a href="{{ path('meme', {'id':meme.getId, 'offset':previous}) }}">PREVIOUS</a>
+                        {% endif %}
+                        {% if next < comments|length %}
+                            <a href="{{ path('meme', {'id':meme.getId, 'offset':next}) }}">NEXT</a>
+                        {% endif %}
                     </div>
-                {% endfor %}
+                {% else %}
+                <p>No comments have been posted yet.</p>
+                {% endif %}
             </div>
         </section>
     </main>
