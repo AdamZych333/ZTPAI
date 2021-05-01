@@ -23,10 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Meme
 {
     /**
-     * @ORM\Column (type="string", length=255, unique=true)
-     */
-    private $slug;
-    /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -90,6 +86,11 @@ class Meme
      * @Groups({"meme:list", "meme:item"})
      */
     private $comments;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -199,6 +200,18 @@ class Meme
                 $comment->setMeme(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

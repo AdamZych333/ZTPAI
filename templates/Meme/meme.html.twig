@@ -45,18 +45,17 @@
                     {% endfor %}
                     <div class="pages">
                         {% if previous >= 0 %}
-                            <a href="{{ path('meme', {'id':meme.getId, 'offset':previous}) }}">PREVIOUS</a>
+                            <a href="{{ path('meme', {'slug':meme.getSlug, 'offset':previous}) }}">PREVIOUS</a>
                         {% endif %}
                         {% if next < comments|length %}
-                            <a href="{{ path('meme', {'id':meme.getId, 'offset':next}) }}">NEXT</a>
+                            <a href="{{ path('meme', {'slug':meme.getSlug, 'offset':next}) }}">NEXT</a>
                         {% endif %}
                     </div>
                 {% else %}
                 <p>No comments have been posted yet.</p>
                 {% endif %}
                 <p>Add comment.</p>
-                <input class="add-comment" type="text">
-                <button>Submit</button>
+                {{ form(comment_form) }}
             </div>
         </section>
     </main>

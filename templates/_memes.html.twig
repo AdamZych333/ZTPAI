@@ -2,7 +2,7 @@
     {% for meme in memes %}
         {% set userDisplay = meme.getCreatedBy.getName ~ " " ~ meme.getCreatedBy.getSurname %}
         <div class="meme" id="{{ meme.getId }}">
-            <a href="{{ path('meme', {'id':meme.getId}) }}">
+            <a href="{{ path('meme', {'slug':meme.getSlug}) }}">
                 <img src="uploads/{{ asset(meme.getImage) }}">
             </a>
             <div class="info">
@@ -15,7 +15,7 @@
                     <i class="fas fa-thumbs-up">
                         <span>{{ meme.getLikes }}</span>
                     </i>
-                    <a href="{{ path('meme', {'id':meme.getId}) }}">Comments({{ meme.getComments|length }})</a>
+                    <a href="{{ path('meme', {'slug':meme.getSlug}) }}">Comments({{ meme.getComments|length }})</a>
                     <i class="fas fa-thumbs-down">
                         <span>{{ meme.getDislikes }}</span>
                     </i>
