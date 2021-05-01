@@ -2,84 +2,38 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
- * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups"="user:list"}}},
- *     itemOperations={"get"={"normalization_context"={"groups"="user:item"}}},
- *     order={"joined_at"="DESC"},
- *     paginationEnabled=false
- * )
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     *
-     * @Groups({"user:list", "user:item"})
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank
-     *
-     * @Groups({"user:list", "user:item"})
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank
-     *
-     * @Groups({"user:list", "user:item"})
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     *
-     * @Groups({"user:list", "user:item"})
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     *
-     * @Groups({"user:list", "user:item"})
-     */
-    private $surname;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     *
-     * @Groups({"user:list", "user:item"})
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="date")
-     * @Assert\NotBlank
-     *
-     * @Groups({"user:list", "user:item"})
-     */
-    private $joined_at;
-
-
 
     public function getId(): ?int
     {
@@ -98,9 +52,41 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->password;
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -110,56 +96,23 @@ class User
         return $this;
     }
 
-    public function getName(): ?string
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
     {
-        return $this->name;
+        return null;
     }
 
-    public function setName(string $name): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        $this->name = $name;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
-
-    public function getSurname(): ?string
-    {
-        return $this->surname;
-    }
-
-    public function setSurname(string $surname): self
-    {
-        $this->surname = $surname;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getJoinedAt(): ?\DateTimeInterface
-    {
-        return $this->joined_at;
-    }
-
-    public function setJoinedAt(\DateTimeInterface $joined_at): self
-    {
-        $this->joined_at = $joined_at;
-
-        return $this;
-    }
-
-    public function __toString(): string{
-        return $this->name." ".$this->surname;
-    }
-
 }
