@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link href="{{ asset('css/login.css') }}" rel="stylesheet"/>
-    <title>LOGIN PAGE</title>
+    <title>Log in!</title>
 </head>
 <body>
 <div class="container">
@@ -9,10 +9,15 @@
         <img src="{{ asset('img/logo.svg') }}">
     </div>
     <div class="login-container">
-        <form class="log-in" action="login" method="POST">
-            <p>{{ message }}</p>
-            <input name="email" type="text" placeholder="email@email.com">
-            <input name="password" type="password" placeholder="password">
+        <form class="log-in" method="post">
+            {% if error %}
+                <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+            {% endif %}
+            <input type="email" name="email" value="{{ last_username }}" id="inputEmail" required autofocus>
+            <input name="password" type="password" required>
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
             <button type="submit">LOGIN</button>
         </form>
     </div>
