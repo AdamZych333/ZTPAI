@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -21,6 +22,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Meme
 {
+    /**
+     * @ORM\Column (type="string", length=255, unique=true)
+     */
+    private $slug;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -196,6 +201,12 @@ class Meme
         }
 
         return $this;
+    }
+
+    public function computeSlug(SluggerInterface $slugger){
+        if(!$this->slug || '-' === $this->slug){
+            $this->slug = (string) $slugger->slug((string) $this)->lower();
+        }
     }
 
     public function __toString(): string{
