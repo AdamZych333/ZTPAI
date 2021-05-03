@@ -9,7 +9,7 @@
         <img src="{{ asset('img/logo.svg') }}">
     </div>
     <div class="login-container">
-        <form class="log-in" action="register" method="POST">
+        <form class="log-in" method="post">
             <p>{{ message }}</p>
             <input name="email" type="text" placeholder="email@email.com">
             <input name="password" type="password" placeholder="password">
@@ -21,7 +21,7 @@
         </form>
     </div>
     <div>
-        <a class="switch" href="{{ path('login') }}">Login</a>
+        <a class="switch" href="{{ path('aoo_login') }}">Login</a>
     </div>
 </div>
 </body>
