@@ -4,5 +4,9 @@
             <input placeholder="Search">
         </form>
     </div>
-    <a class="login" href="{{ path('login') }}">Login</a>
+    {% if app.user %}
+        <a class="login" href="{{ path('app_logout') }}">Logout</a>
+    {% else %}
+        <a class="login" href="{{ path('app_login') }}">Login</a>
+    {% endif %}
 </header>

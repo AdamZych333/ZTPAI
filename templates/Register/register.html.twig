@@ -10,18 +10,21 @@
     </div>
     <div class="login-container">
         <form class="log-in" method="post">
-            <p>{{ message }}</p>
-            <input name="email" type="text" placeholder="email@email.com">
-            <input name="password" type="password" placeholder="password">
-            <input name="confirmedPassword" type="password" placeholder="confirm password">
-            <input name="name" type="text" placeholder="name">
-            <input name="surname" type="text" placeholder="surname">
-            <input name="phone" type="text" placeholder="phone">
-            <button type="submit">REGISTER</button>
+            {% for flashError in app.flashes('verify_email_error') %}
+                <p>{{ flashError }}</p>
+            {% endfor %}
+
+            {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email, {'attr': {'placeholder': 'email'}, 'label': false}) }}
+            {{ form_row(registrationForm.plainPassword.first, {'attr': {'placeholder': 'password'}, 'label': false}) }}
+            {{ form_row(registrationForm.plainPassword.second, {'attr': {'placeholder': 'confirm password'}, 'label': false}) }}
+
+            <button type="submit" class="btn">Register</button>
+            {{ form_end(registrationForm) }}
         </form>
     </div>
     <div>
-        <a class="switch" href="{{ path('aoo_login') }}">Login</a>
+        <a class="switch" href="{{ path('app_login') }}">Login</a>
     </div>
 </div>
 </body>

@@ -4,11 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -21,6 +24,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email
+     * @Assert\NotBlank
      */
     private $email;
 
@@ -34,6 +39,16 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $joinedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     public function getId(): ?int
     {
@@ -118,5 +133,43 @@ class User implements UserInterface
 
     public function __toString(): string{
         return $this->email;
+    }
+
+    public function getJoinedAt(): ?\DateTimeInterface
+    {
+        return $this->joinedAt;
+    }
+
+    public function setJoinedAt(\DateTimeInterface $joinedAt): self
+    {
+        $this->joinedAt = $joinedAt;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setJoinedAtValue(){
+        $this->joinedAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setRolesValue(){
+        $this->roles = ['ROLE_USER'];
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
 }

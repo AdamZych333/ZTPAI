@@ -13,12 +13,12 @@
             {% if error %}
                 <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
             {% endif %}
-            <input type="email" name="email" value="{{ last_username }}" id="inputEmail" required autofocus>
-            <input name="password" type="password" required>
+            <input type="email" name="email" placeholder="email" value="{{ last_username }}" id="inputEmail" required autofocus>
+            <input type="password" name="password" placeholder="password"  required>
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
             >
-            <button type="submit">LOGIN</button>
+            <button type="submit">Login</button>
         </form>
     </div>
     <div>
