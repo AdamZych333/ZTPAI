@@ -13,11 +13,9 @@ class TOP10Controller extends AbstractController
      */
     public function index(): Response
     {
-        $memes = [];
-        $user = null;
         return $this->render('TOP10/top10.html.twig', [
-            'memes' => $memes,
-            'user' => $user
+            'memes' => [],
+            'user' => null
         ]);
     }
 }

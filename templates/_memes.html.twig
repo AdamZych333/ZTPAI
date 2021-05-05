@@ -1,6 +1,5 @@
 <div class="memes">
     {% for meme in memes %}
-        {% set userDisplay = meme.getCreatedBy.getName ~ " " ~ meme.getCreatedBy.getSurname %}
         <div class="meme" id="{{ meme.getId }}">
             <a href="{{ path('meme', {'slug':meme.getSlug}) }}">
                 <img src="uploads/{{ asset(meme.getImage) }}">
@@ -8,7 +7,7 @@
             <div class="info">
                 <h1>{{ meme.getTitle }}</h1>
                 <div class="description">
-                    <h2>{{ userDisplay }}</h2>
+                    <h2>{{ meme.createdBy.getEmail }}</h2>
                     <h2>{{ meme.getCreatedAt|date("d-m-Y") }}</h2>
                 </div>
                 <div class="social-section">
