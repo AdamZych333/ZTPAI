@@ -34,7 +34,7 @@ class MemeController extends AbstractController
      * @param CommentRepository $commentRepository
      * @return Response
      */
-    public function getMemeById(Request $request,
+    public function getMeme(Request $request,
                                 Meme $meme,
                                 CommentRepository $commentRepository
     ): Response{

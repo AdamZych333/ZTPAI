@@ -10,11 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=DislikesRepository::class)
- * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups"="dislikes:list"}}},
- *     itemOperations={"get"={"normalization_context"={"groups"="dislikes:item"}}},
- *     paginationEnabled=false
- * )
  */
 class Dislikes
 {
@@ -22,8 +17,6 @@ class Dislikes
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     *
-     * @Groups({"dislikes:list", "dislikes:item"})
      */
     private $id;
 
@@ -31,8 +24,6 @@ class Dislikes
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank
-     *
-     * @Groups({"dislikes:list", "dislikes:item"})
      */
     private $from_user;
 
@@ -40,8 +31,6 @@ class Dislikes
      * @ORM\ManyToOne(targetEntity=Meme::class)
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank
-     *
-     * @Groups({"dislikes:list", "dislikes:item"})
      */
     private $meme;
 

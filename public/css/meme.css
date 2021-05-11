@@ -87,7 +87,14 @@
     width: 20vw;
 }
 
+.required{
+    display: none;
+}
 
+#comment_form_content{
+    width: 30vw;
+    height: 20vh;
+}
 
 
 

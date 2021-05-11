@@ -28,14 +28,17 @@
             </div>
             <div class="comments">
                 {% if comments|length > 0 %}
-                    <p>There are {{ comments|length }} comments.</p>
+                    {% if comments|length == 1%}
+                        <p>There is {{ comments|length }} comment.</p>
+                    {% else %}
+                        <p>There are {{ comments|length }} comments.</p>
+                    {% endif %}
                     {% for comment in comments %}
                         <div class="comment">
-                            {% set userDisplay = comment.getAuthor.getName ~ " " ~ comment.getAuthor.getSurname %}
                             <img src="/img/users/{{ asset(comment.getAuthor.getImage) }}">
                             <div>
                                 <div class="info">
-                                    <p>{{ userDisplay }}</p>
+                                    <p>{{ comment.getAuthor.getEmail }}</p>
                                     <p>{{ comment.getCreatedAt|date() }}</p>
                                 </div>
                                 <p> {{ comment.getContent }} </p>
