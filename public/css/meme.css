@@ -94,6 +94,7 @@
 #comment_form_content{
     width: 30vw;
     height: 20vh;
+    resize: none;
 }
 
 

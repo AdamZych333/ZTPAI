@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Meme;
+use App\Entity\User;
 use App\Form\CommentFormType;
 use App\Repository\CommentRepository;
 use App\Repository\MemeRepository;
@@ -43,6 +44,10 @@ class MemeController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $comment->setMeme($meme);
+            /** @var User $user */
+            $user = $this->getUser();
+            $comment->setAuthor($user);
+            $comment->setCreatedAtValue();
 
             $this->entityManager->persist($comment);
             $this->entityManager->flush();

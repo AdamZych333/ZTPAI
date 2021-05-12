@@ -42,7 +42,6 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank
      *
      * @Groups({"comment:list", "comment:item"})
      */
@@ -51,7 +50,6 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity=Meme::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank
      *
      * @Groups({"comment:list", "comment:item"})
      */
@@ -59,7 +57,6 @@ class Comment
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank
      *
      * @Groups({"comment:list", "comment:item"})
      */
