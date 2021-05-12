@@ -64,8 +64,6 @@ class SecurityController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            $user->setRolesValue();
-            $user->setJoinedAtValue();
             $user->setImage('avatar.jpg');
 
             $entityManager = $this->getDoctrine()->getManager();

@@ -47,7 +47,6 @@ class MemeController extends AbstractController
             /** @var User $user */
             $user = $this->getUser();
             $comment->setAuthor($user);
-            $comment->setCreatedAtValue();
 
             $this->entityManager->persist($comment);
             $this->entityManager->flush();

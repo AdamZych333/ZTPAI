@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
- *
+ * @ORM\HasLifecycleCallbacks()
  *
  * @ApiResource(
  *     collectionOperations={"get"={"normalization_context"={"groups"="comment:list"}}},
