@@ -40,6 +40,9 @@
                                 <div class="info">
                                     <p>{{ comment.getAuthor.getEmail }}</p>
                                     <p>{{ comment.getCreatedAt|date() }}</p>
+                                    {% if app.user == comment.getAuthor %}
+                                        <a href="{{ path("delete_comment", {'slug':meme.getSlug, 'id':comment.getId}) }}"><i class="fas fa-times-circle"></i></a>
+                                    {% endif %}
                                 </div>
                                 <p> {{ comment.getContent }} </p>
                             </div>

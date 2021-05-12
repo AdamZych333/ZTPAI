@@ -9,7 +9,11 @@ use App\Form\CommentFormType;
 use App\Repository\CommentRepository;
 use App\Repository\MemeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\DocBlock\Tags\Uses;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -64,5 +68,27 @@ class MemeController extends AbstractController
                 'next' => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
                 'comment_form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/meme/{slug}/comments/{id}", name="delete_comment")
+     * @ParamConverter("meme", options={"exclude": {"id"}})
+     * @param Meme $meme
+     * @param int $id
+     * @param CommentRepository $commentRepository
+     * @return Response
+     */
+    public function deleteComment(Meme $meme,
+                                  int $id,
+                                  CommentRepository $commentRepository
+    ): Response
+    {
+        if($meme->getCreatedBy() !== $this->getUser()){
+            throw $this->createAccessDeniedException();
+        }
+        $comment = $commentRepository->find($id);
+        $this->entityManager->remove($comment);
+        $this->entityManager->flush();
+        return $this->redirectToRoute('meme', ['slug' => $meme->getSlug()]);
     }
 }

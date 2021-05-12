@@ -87,6 +87,15 @@
     width: 20vw;
 }
 
+.fa-times-circle{
+    color: #b44b46;
+}
+
+.fa-times-circle:hover{
+    color: #f53833;
+    cursor: pointer;
+}
+
 .required{
     display: none;
 }
