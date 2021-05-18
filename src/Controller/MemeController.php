@@ -83,7 +83,8 @@ class MemeController extends AbstractController
                                   CommentRepository $commentRepository
     ): Response
     {
-        if($meme->getCreatedBy() !== $this->getUser()){
+        $comment = $commentRepository->find($id);
+        if($comment->getAuthor() !== $this->getUser()){
             throw $this->createAccessDeniedException();
         }
         $comment = $commentRepository->find($id);
