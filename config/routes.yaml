@@ -1,10 +1,10 @@
 home:
   path: /home
-  controller: App\Controller\HomeController::index
+  controller: App\Controller\MemeController::home
 
 top10:
   path: /top10
-  controller: App\Controller\TOP10Controller::index
+  controller: App\Controller\MemeController::top10
 
 user:
   path: /users
@@ -12,5 +12,5 @@ user:
 
 add:
   path: /add
-  controller: App\Controller\AddController::index
+  controller: App\Controller\MemeController::add
 

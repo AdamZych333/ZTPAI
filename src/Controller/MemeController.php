@@ -31,6 +31,36 @@ class MemeController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * @Route("/home", name="home")
+     * @param MemeRepository $memeRepository
+     * @return Response
+     */
+    public function home(MemeRepository $memeRepository): Response{
+
+        return $this->render('Home/home.html.twig', [
+            'memes' => $memeRepository->findAll()
+        ]);
+    }
+
+    /**
+     * @Route("/add", name="add")
+     */
+    public function add(): Response
+    {
+        return $this->render('Add/add.html.twig');
+    }
+
+    /**
+     * @Route("/top10", name="top10")
+     */
+    public function top10(): Response
+    {
+        return $this->render('TOP10/top10.html.twig', [
+            'memes' => [],
+            'user' => null
+        ]);
+    }
 
     /**
      * @Route("/meme/{slug}", name="meme")
