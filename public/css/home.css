@@ -12,10 +12,16 @@
     margin: 1em 0 3em 0;
 }
 
+.meme > a{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-right: 2em;
+}
+
 .meme img{
     height: auto;
     width: 90%;
-    margin-right: 2em;
 }
 
 .info{

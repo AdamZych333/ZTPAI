@@ -28,19 +28,20 @@
 
 .users{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 2em;
 }
 
 .user{
     display: flex;
     flex-direction: row;
+    align-items: center;
     background: #777676 0% 0% no-repeat padding-box;
     padding: 1em;
 }
 
 .user>img{
-    height: 10vw;
+    height: 7vw;
 }
 
 .info{
