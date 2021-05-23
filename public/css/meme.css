@@ -87,7 +87,14 @@
     width: 20vw;
 }
 
+.info>a{
+    height: 1em;
+    display: flex;
+    align-content: center;
+}
+
 .fa-times-circle{
+    font-size: 1em;
     color: #b44b46;
 }
 

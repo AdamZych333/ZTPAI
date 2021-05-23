@@ -44,7 +44,7 @@ class MemeController extends AbstractController
     public function home(MemeRepository $memeRepository): Response{
 
         return $this->render('Home/home.html.twig', [
-            'memes' => $memeRepository->findBy(array(), array('created_at' => 'ASC'))
+            'memes' => $memeRepository->findBy([], ['created_at' => 'ASC'])
         ]);
     }
 
@@ -58,12 +58,13 @@ class MemeController extends AbstractController
 
     /**
      * @Route("/top10", name="top10")
+     * @param MemeRepository $memeRepository
+     * @return Response
      */
-    public function top10(): Response
+    public function top10(MemeRepository $memeRepository): Response
     {
         return $this->render('TOP10/top10.html.twig', [
-            'memes' => [],
-            'user' => null
+            'memes' => $memeRepository->findBy([], ['likes' => 'DESC'])
         ]);
     }
 
