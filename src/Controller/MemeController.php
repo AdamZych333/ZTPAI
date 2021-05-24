@@ -89,11 +89,11 @@ class MemeController extends AbstractController
     {
         $comment = $commentRepository->find($id);
         if($comment->getAuthor() !== $this->getUser()){
-            throw $this->createAccessDeniedException();
+            return new JsonResponse("", Response::HTTP_UNAUTHORIZED);
         }
         $this->entityManager->remove($comment);
         $this->entityManager->flush();
-        return $this->redirectToRoute('meme', ['slug' => $meme->getSlug()]);
+        return new JsonResponse("", Response::HTTP_OK);
     }
 
     /**
