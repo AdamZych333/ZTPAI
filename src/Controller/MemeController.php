@@ -77,23 +77,23 @@ class MemeController extends AbstractController
     /**
      * @Route("/meme/{slug}/comments/{id}", name="delete_comment")
      * @ParamConverter("meme", options={"exclude": {"id"}})
-     * @param Meme $meme
      * @param int $id
      * @param CommentRepository $commentRepository
      * @return Response
      */
-    public function deleteComment(Meme $meme,
-                                  int $id,
+    public function deleteComment(int $id,
                                   CommentRepository $commentRepository
     ): Response
     {
         $comment = $commentRepository->find($id);
-        if($comment->getAuthor() !== $this->getUser()){
-            return new JsonResponse("", Response::HTTP_UNAUTHORIZED);
+        $user = $this->getUser();
+        if($comment->getAuthor() == $user or $this->isGranted("ROLE_ADMIN")){
+            $this->entityManager->remove($comment);
+            $this->entityManager->flush();
+            return new JsonResponse("", Response::HTTP_OK);
         }
-        $this->entityManager->remove($comment);
-        $this->entityManager->flush();
-        return new JsonResponse("", Response::HTTP_OK);
+        return new JsonResponse("", Response::HTTP_UNAUTHORIZED);
+
     }
 
     /**

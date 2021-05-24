@@ -41,7 +41,7 @@
                                 <div class="info">
                                     <p>{{ comment.getAuthor.getEmail }}</p>
                                     <p>{{ comment.getCreatedAt|date() }}</p>
-                                    {% if app.user == comment.getAuthor %}
+                                    {% if app.user == comment.getAuthor or is_granted('ROLE_ADMIN') %}
                                         <i class="fas fa-times-circle"></i>
                                     {% endif %}
                                 </div>
