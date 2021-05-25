@@ -44,8 +44,8 @@ class MemeController extends AbstractController
      * @return Response
      */
     public function getMeme(Request $request,
-                                Meme $meme,
-                                CommentRepository $commentRepository
+                            Meme $meme,
+                            CommentRepository $commentRepository
     ): Response{
         $comment = new Comment();
         $form = $this->createForm(CommentFormType::class, $comment);
@@ -72,33 +72,6 @@ class MemeController extends AbstractController
                 'next' => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
                 'comment_form' => $form->createView()
         ]);
-    }
-
-    /**
-     * @Route("/meme/{slug}/comments/{id}", name="delete_comment")
-     * @ParamConverter("meme", options={"exclude": {"id"}})
-     * @param Request $request
-     * @param int $id
-     * @param CommentRepository $commentRepository
-     * @return Response
-     */
-    public function deleteComment(Request $request,
-                                  int $id,
-                                  CommentRepository $commentRepository
-    ): Response
-    {
-        if($request->getMethod() == "GET"){
-            return $this->redirectToRoute("home");
-        }
-        $comment = $commentRepository->find($id);
-        $user = $this->getUser();
-        if($comment->getAuthor() == $user or $this->isGranted("ROLE_ADMIN")){
-            $this->entityManager->remove($comment);
-            $this->entityManager->flush();
-            return new JsonResponse("", Response::HTTP_OK);
-        }
-        return new JsonResponse("", Response::HTTP_UNAUTHORIZED);
-
     }
 
     /**

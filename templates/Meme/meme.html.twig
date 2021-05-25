@@ -34,11 +34,6 @@
             </div>
             <div class="comments">
                 {% if comments|length > 0 %}
-                    {% if comments|length == 1%}
-                        <p>There is {{ comments|length }} comment.</p>
-                    {% else %}
-                        <p>There are {{ comments|length }} comments.</p>
-                    {% endif %}
                     {% for comment in comments %}
                         <div class="comment" id="{{ comment.getId }}">
                             <img src="/img/users/{{ asset(comment.getAuthor.getImage) }}">

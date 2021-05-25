@@ -1,5 +1,4 @@
 <script src="{{ asset('js/statistics.js') }}" type="text/javascript" defer></script>
-<div class="js-user" user="{{ app.user }}"></div>
 <div class="memes">
     {% for meme in memes %}
         <div class="meme" id="{{ meme.getSlug }}">
