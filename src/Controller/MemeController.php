@@ -100,26 +100,32 @@ class MemeController extends AbstractController
      * @Route("/meme/{slug}/like", name="like")
      * @param Meme $meme
      * @param LikesRepository $likesRepository
+     * @param DislikesRepository $dislikesRepository
      * @return Response
      */
-    public function like(Meme $meme, LikesRepository $likesRepository): Response
+    public function like(Meme $meme,
+                         LikesRepository $likesRepository,
+                         DislikesRepository $dislikesRepository): Response
     {
         /** @var User $user */
         $user = $this->getUser();
         $like = $likesRepository->findOneBy(['meme' => $meme, 'from_user' => $user]);
+        $dislike = $dislikesRepository->findOneBy(['meme' => $meme, 'from_user' => $user]);
         $response = new JsonResponse();
 
-        if($like == null){
+        if($like == null && $dislike == null){
             $meme->setLikes($meme->getLikes()+1);
             $newLike = new Likes();
             $newLike->setFromUser($user);
             $newLike->setMeme($meme);
             $this->entityManager->persist($newLike);
             $response->setStatusCode(Response::HTTP_CREATED);
-        }else{
-            $meme->setLikes($meme->getLikes()-1);
+        }else if($dislike == null) {
+            $meme->setLikes($meme->getLikes() - 1);
             $this->entityManager->remove($like);
             $response->setStatusCode(Response::HTTP_OK);
+        }else{
+            $response->setStatusCode(Response::HTTP_NO_CONTENT);
         }
         $this->entityManager->persist($meme);
         $this->entityManager->flush();
@@ -133,26 +139,33 @@ class MemeController extends AbstractController
      * @Route("/meme/{slug}/dislike", name="dislike")
      * @param Meme $meme
      * @param DislikesRepository $dislikesRepository
+     * @param LikesRepository $likesRepository
      * @return Response
      */
-    public function dislike(Meme $meme, DislikesRepository $dislikesRepository): Response
+    public function dislike(Meme $meme,
+                            DislikesRepository $dislikesRepository,
+                            LikesRepository $likesRepository): Response
     {
         /** @var User $user */
         $user = $this->getUser();
         $dislike = $dislikesRepository->findOneBy(['meme' => $meme, 'from_user' => $user]);
+        $like = $likesRepository->findOneBy(['meme' => $meme, 'from_user' => $user]);
         $response = new JsonResponse();
 
-        if($dislike == null){
+        if($dislike == null && $like == null){
             $meme->setDislikes($meme->getDislikes()+1);
             $newDislike = new Dislikes();
             $newDislike->setFromUser($user);
             $newDislike->setMeme($meme);
             $this->entityManager->persist($newDislike);
             $response->setStatusCode(Response::HTTP_CREATED);
-        }else{
+        }else if($like == null){
             $meme->setDislikes($meme->getDislikes()-1);
             $this->entityManager->remove($dislike);
             $response->setStatusCode(Response::HTTP_OK);
+        }
+        else{
+            $response->setStatusCode(Response::HTTP_NO_CONTENT);
         }
         $this->entityManager->persist($meme);
         $this->entityManager->flush();

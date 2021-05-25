@@ -8,11 +8,7 @@ function giveLike() {
 
     fetch(`/meme/${id}/like`)
         .then(function (response){
-            if(response.status === 201){
-                likes.querySelector("span").innerHTML = parseInt(likes.querySelector("span").innerHTML) + 1;
-            }else if(response.status === 200){
-                likes.querySelector("span").innerHTML = parseInt(likes.querySelector("span").innerHTML) - 1;
-            }
+            rate(response, likes);
         });
 }
 
@@ -23,12 +19,16 @@ function giveDislike() {
 
     fetch(`/meme/${id}/dislike`)
         .then(function (response){
-            if(response.status === 201) {
-                dislikes.querySelector("span").innerHTML = parseInt(dislikes.querySelector("span").innerHTML) + 1;
-            }else if(response.status === 200){
-                dislikes.querySelector("span").innerHTML = parseInt(dislikes.querySelector("span").innerHTML) - 1;
-            }
+            rate(response, dislikes);
         });
+}
+
+function rate(response, action){
+    if(response.status === 201) {
+        action.querySelector("span").innerHTML = parseInt(action.querySelector("span").innerHTML) + 1;
+    }else if(response.status === 200){
+        action.querySelector("span").innerHTML = parseInt(action.querySelector("span").innerHTML) - 1;
+    }
 }
 
 likeButtons.forEach(button => button.addEventListener("click", giveLike));

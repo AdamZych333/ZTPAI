@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/comments.js') }}" type="text/javascript" defer></script>
+    <script src="{{ asset('js/statistics.js') }}" type="text/javascript" defer></script>
     <title>MEME</title>
 </head>
 <body>
@@ -19,12 +20,16 @@
                     <h2>{{ meme.getCreatedAt|date("d-m-Y") }}</h2>
                 </div>
                 <div class="social-section">
-                    <i class="fas fa-thumbs-up">
-                        <span>{{ meme.getLikes }}</span>
-                    </i>
-                    <i class="fas fa-thumbs-down">
-                        <span>{{ meme.getDislikes }}</span>
-                    </i>
+                    <div>
+                        <i class="fas fa-thumbs-up">
+                            <span>{{ meme.getLikes }}</span>
+                        </i>
+                    </div>
+                    <div>
+                        <i class="fas fa-thumbs-down">
+                            <span>{{ meme.getDislikes }}</span>
+                        </i>
+                    </div>
                 </div>
             </div>
             <div class="comments">
