@@ -6,7 +6,9 @@ function giveLike() {
     const container = likes.parentElement.parentElement.parentElement;
     const id = container.getAttribute("id");
 
-    fetch(`/meme/${id}/like`)
+    fetch(`/meme/${id}/like`, {
+        method: "POST"
+    })
         .then(function (response){
             rate(response, likes);
         });
@@ -17,7 +19,9 @@ function giveDislike() {
     const container = dislikes.parentElement.parentElement.parentElement;
     const id = container.getAttribute("id");
 
-    fetch(`/meme/${id}/dislike`)
+    fetch(`/meme/${id}/dislike`, {
+        method: "POST"
+    })
         .then(function (response){
             rate(response, dislikes);
         });

@@ -77,14 +77,19 @@ class MemeController extends AbstractController
     /**
      * @Route("/meme/{slug}/comments/{id}", name="delete_comment")
      * @ParamConverter("meme", options={"exclude": {"id"}})
+     * @param Request $request
      * @param int $id
      * @param CommentRepository $commentRepository
      * @return Response
      */
-    public function deleteComment(int $id,
+    public function deleteComment(Request $request,
+                                  int $id,
                                   CommentRepository $commentRepository
     ): Response
     {
+        if($request->getMethod() == "GET"){
+            return $this->redirectToRoute("home");
+        }
         $comment = $commentRepository->find($id);
         $user = $this->getUser();
         if($comment->getAuthor() == $user or $this->isGranted("ROLE_ADMIN")){
@@ -98,15 +103,20 @@ class MemeController extends AbstractController
 
     /**
      * @Route("/meme/{slug}/like", name="like")
+     * @param Request $request
      * @param Meme $meme
      * @param LikesRepository $likesRepository
      * @param DislikesRepository $dislikesRepository
      * @return Response
      */
-    public function like(Meme $meme,
+    public function like(Request $request,
+                         Meme $meme,
                          LikesRepository $likesRepository,
                          DislikesRepository $dislikesRepository): Response
     {
+        if($request->getMethod() == "GET"){
+            return $this->redirectToRoute("home");
+        }
         /** @var User $user */
         $user = $this->getUser();
         $like = $likesRepository->findOneBy(['meme' => $meme, 'from_user' => $user]);
@@ -137,15 +147,20 @@ class MemeController extends AbstractController
 
     /**
      * @Route("/meme/{slug}/dislike", name="dislike")
+     * @param Request $request
      * @param Meme $meme
      * @param DislikesRepository $dislikesRepository
      * @param LikesRepository $likesRepository
      * @return Response
      */
-    public function dislike(Meme $meme,
+    public function dislike(Request $request,
+                            Meme $meme,
                             DislikesRepository $dislikesRepository,
                             LikesRepository $likesRepository): Response
     {
+        if($request->getMethod() == "GET"){
+            return $this->redirectToRoute("home");
+        }
         /** @var User $user */
         $user = $this->getUser();
         $dislike = $dislikesRepository->findOneBy(['meme' => $meme, 'from_user' => $user]);
