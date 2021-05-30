@@ -1,8 +1,7 @@
 .main-container{
     display: flex;
     flex-direction: column;
-    padding: 0em 10em 5em 10em;
-    overflow-y: auto;
+    padding: 0 10em 5em 10em;
 }
 
 .sort{
