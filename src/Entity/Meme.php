@@ -33,7 +33,6 @@ class Meme
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      *
      * @Groups({"meme:list", "meme:item"})
      */
@@ -41,7 +40,6 @@ class Meme
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank
      *
      * @Groups({"meme:list", "meme:item"})
      */
@@ -49,7 +47,6 @@ class Meme
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      *
      * @Groups({"meme:list", "meme:item"})
      */
@@ -58,7 +55,6 @@ class Meme
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank
      *
      * @Groups({"meme:list", "meme:item"})
      */
@@ -258,5 +254,12 @@ class Meme
 
     public function __toString(): string{
         return $this->title;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue(){
+        $this->created_at = new \DateTime();
     }
 }

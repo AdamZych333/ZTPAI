@@ -22,14 +22,6 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="add")
-     */
-    public function add(): Response
-    {
-        return $this->render('Add/add.html.twig');
-    }
-
-    /**
      * @Route("/top10", name="top10")
      * @param MemeRepository $memeRepository
      * @return Response

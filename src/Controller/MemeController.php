@@ -8,6 +8,7 @@ use App\Entity\Like;
 use App\Entity\Meme;
 use App\Entity\User;
 use App\Form\CommentFormType;
+use App\Form\MemeFormType;
 use App\Repository\CommentRepository;
 use App\Repository\DislikeRepository;
 use App\Repository\LikeRepository;
@@ -67,6 +68,41 @@ class MemeController extends AbstractController
                 'previous' => $offset - CommentRepository::PAGINATOR_PER_PAGE,
                 'next' => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
                 'comment_form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/add", name="add_meme")
+     * @param Request $request
+     * @return Response
+     */
+    public function addMeme(Request $request){
+        $meme = new Meme();
+        $form = $this->createForm(MemeFormType::class, $meme);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $image = $request->files->get('meme_form')['image'];
+            $uploads_dir = $this->getParameter('uploads_dir');
+            $name = md5(uniqid()) . "." . $image->guessExtension();
+            $image->move(
+                $uploads_dir,
+                $name
+            );
+            $meme->setImage($name);
+            /** @var User $user */
+            $user = $this->getUser();
+            $meme->setCreatedBy($user);
+            $meme->setCreatedAtValue();
+
+            $this->entityManager->persist($meme);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute("home");
+        }
+
+        return $this->render('Add/add.html.twig', [
+            'meme_form' => $form->createView()
         ]);
     }
 
