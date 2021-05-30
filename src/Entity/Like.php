@@ -25,7 +25,7 @@ class Like
     private $meme;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="likes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $from_user;
@@ -35,12 +35,12 @@ class Like
         return $this->id;
     }
 
-    public function getMeme(): ?Meme
+    public function getMeme(): ?meme
     {
         return $this->meme;
     }
 
-    public function setMeme(?Meme $meme): self
+    public function setMeme(?meme $meme): self
     {
         $this->meme = $meme;
 
@@ -57,9 +57,5 @@ class Like
         $this->from_user = $from_user;
 
         return $this;
-    }
-
-    public function __toString(): string{
-        return $this->meme->getTitle().":".$this->id;
     }
 }

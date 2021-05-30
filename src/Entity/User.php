@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -70,6 +72,22 @@ class User implements UserInterface
      * @Groups({"user:list", "user:item"})
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Like::class, mappedBy="from_user", orphanRemoval=true)
+     */
+    private $likes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Dislike::class, mappedBy="from_user", orphanRemoval=true)
+     */
+    private $dislikes;
+
+    public function __construct()
+    {
+        $this->likes = new ArrayCollection();
+        $this->dislikes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -164,6 +182,66 @@ class User implements UserInterface
     public function setJoinedAt(\DateTimeInterface $joinedAt): self
     {
         $this->joinedAt = $joinedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setFromUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getFromUser() === $this) {
+                $like->setFromUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dislike[]
+     */
+    public function getDislikes(): Collection
+    {
+        return $this->dislikes;
+    }
+
+    public function addDislike(Dislike $dislike): self
+    {
+        if (!$this->dislikes->contains($dislike)) {
+            $this->dislikes[] = $dislike;
+            $dislike->setFromUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDislike(Dislike $dislike): self
+    {
+        if ($this->dislikes->removeElement($dislike)) {
+            // set the owning side to null (unless already changed)
+            if ($dislike->getFromUser() === $this) {
+                $dislike->setFromUser(null);
+            }
+        }
 
         return $this;
     }

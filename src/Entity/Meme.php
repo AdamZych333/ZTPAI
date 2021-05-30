@@ -78,17 +78,15 @@ class Meme
 
     /**
      * @ORM\OneToMany(targetEntity=Like::class, mappedBy="meme", orphanRemoval=true)
-     *
-     * @Groups({"meme:list", "meme:item"})
      */
     private $likes;
 
     /**
      * @ORM\OneToMany(targetEntity=Dislike::class, mappedBy="meme", orphanRemoval=true)
-     *
-     * @Groups({"meme:list", "meme:item"})
      */
     private $dislikes;
+
+
 
     public function __construct()
     {

@@ -19,13 +19,13 @@ class Dislike
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=meme::class, inversedBy="dislikes")
+     * @ORM\ManyToOne(targetEntity=Meme::class, inversedBy="dislikes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $meme;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="dislikes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $from_user;
@@ -57,9 +57,5 @@ class Dislike
         $this->from_user = $from_user;
 
         return $this;
-    }
-
-    public function __toString(): string{
-        return $this->meme->getTitle().":".$this->id;
     }
 }

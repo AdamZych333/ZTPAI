@@ -97,10 +97,12 @@ class MemeController extends AbstractController
             $newLike->setFromUser($user);
             $newLike->setMeme($meme);
             $meme->addLike($newLike);
+            $user->addLike($newLike);
             $this->entityManager->persist($newLike);
             $response->setStatusCode(Response::HTTP_CREATED);
         }else if($dislike == null) {
             $meme->removeLike($like);
+            $user->removeLike($like);
             $this->entityManager->remove($like);
             $response->setStatusCode(Response::HTTP_OK);
         }else{
@@ -141,10 +143,12 @@ class MemeController extends AbstractController
             $newDislike->setFromUser($user);
             $newDislike->setMeme($meme);
             $meme->addDislike($newDislike);
+            $user->addDislike($newDislike);
             $this->entityManager->persist($newDislike);
             $response->setStatusCode(Response::HTTP_CREATED);
         }else if($like == null){
             $meme->removeDislike($dislike);
+            $user->removeDislike($dislike);
             $this->entityManager->remove($dislike);
             $response->setStatusCode(Response::HTTP_OK);
         }
