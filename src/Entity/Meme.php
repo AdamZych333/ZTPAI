@@ -40,22 +40,6 @@ class Meme
     private $title;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank
-     *
-     * @Groups({"meme:list", "meme:item"})
-     */
-    private $likes;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank
-     *
-     * @Groups({"meme:list", "meme:item"})
-     */
-    private $dislikes;
-
-    /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank
      *
@@ -92,9 +76,25 @@ class Meme
      */
     private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Like::class, mappedBy="meme", orphanRemoval=true)
+     *
+     * @Groups({"meme:list", "meme:item"})
+     */
+    private $likes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Dislike::class, mappedBy="meme", orphanRemoval=true)
+     *
+     * @Groups({"meme:list", "meme:item"})
+     */
+    private $dislikes;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->dislikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,30 +110,6 @@ class Meme
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getLikes(): ?int
-    {
-        return $this->likes;
-    }
-
-    public function setLikes(int $likes): self
-    {
-        $this->likes = $likes;
-
-        return $this;
-    }
-
-    public function getDislikes(): ?int
-    {
-        return $this->dislikes;
-    }
-
-    public function setDislikes(int $dislikes): self
-    {
-        $this->dislikes = $dislikes;
 
         return $this;
     }
@@ -172,6 +148,66 @@ class Meme
     public function getCreatedBy(): ?User
     {
         return $this->created_by;
+    }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setMeme($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getMeme() === $this) {
+                $like->setMeme(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dislike[]
+     */
+    public function getDislikes(): Collection
+    {
+        return $this->dislikes;
+    }
+
+    public function addDislike(Dislike $dislike): self
+    {
+        if (!$this->dislikes->contains($dislike)) {
+            $this->dislikes[] = $dislike;
+            $dislike->setMeme($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDislike(Dislike $dislike): self
+    {
+        if ($this->dislikes->removeElement($dislike)) {
+            // set the owning side to null (unless already changed)
+            if ($dislike->getMeme() === $this) {
+                $dislike->setMeme(null);
+            }
+        }
+
+        return $this;
     }
 
     /**

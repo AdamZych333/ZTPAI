@@ -13,12 +13,12 @@
                 </div>
                 <div class="social-section">
                     <i class="fas fa-thumbs-up">
-                        <span>{{ meme.getLikes }}</span>
+                        <span>{{ meme.getLikes|length }}</span>
                     </i>
                     </a>
                     <a href="{{ path('meme', {'slug':meme.getSlug}) }}">Comments({{ meme.getComments|length }})</a>
                     <i class="fas fa-thumbs-down">
-                        <span>{{ meme.getDislikes }}</span>
+                        <span>{{ meme.getDislikes|length }}</span>
                     </i>
                     </a>
                 </div>

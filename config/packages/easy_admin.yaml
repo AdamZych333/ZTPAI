@@ -4,5 +4,5 @@ easy_admin:
         - App\Entity\User
         - App\Entity\Meme
         - App\Entity\Comment
-        - App\Entity\Likes
-        - App\Entity\Dislikes
+        - App\Entity\Like
+        - App\Entity\Dislike

@@ -2,27 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Likes;
+use App\Entity\Like;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Likes|null find($id, $lockMode = null, $lockVersion = null)
- * @method Likes|null findOneBy(array $criteria, array $orderBy = null)
- * @method Likes[]    findAll()
- * @method Likes[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Like|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Like|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Like[]    findAll()
+ * @method Like[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LikesRepository extends ServiceEntityRepository
+class LikeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Likes::class);
+        parent::__construct($registry, Like::class);
     }
 
     // /**
-    //  * @return Likes[] Returns an array of Likes objects
+    //  * @return Like[] Returns an array of Like objects
     //  */
     /*
     public function findByExampleField($value)
@@ -39,7 +37,7 @@ class LikesRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Likes
+    public function findOneBySomeField($value): ?Like
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')

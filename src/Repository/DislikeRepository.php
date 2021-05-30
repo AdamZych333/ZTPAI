@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Dislikes;
+use App\Entity\Dislike;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Dislikes|null find($id, $lockMode = null, $lockVersion = null)
- * @method Dislikes|null findOneBy(array $criteria, array $orderBy = null)
- * @method Dislikes[]    findAll()
- * @method Dislikes[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Dislike|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Dislike|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Dislike[]    findAll()
+ * @method Dislike[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DislikesRepository extends ServiceEntityRepository
+class DislikeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Dislikes::class);
+        parent::__construct($registry, Dislike::class);
     }
 
     // /**
-    //  * @return Dislikes[] Returns an array of Dislikes objects
+    //  * @return Dislike[] Returns an array of Dislike objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class DislikesRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Dislikes
+    public function findOneBySomeField($value): ?Dislike
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.exampleField = :val')
