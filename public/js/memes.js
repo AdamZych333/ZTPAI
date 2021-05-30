@@ -7,7 +7,7 @@ function deleteMeme(){
         method: "DELETE"
     }).then(function (response){
         if(response.status === 200){
-            if(window.location.pathname === '/hom'){
+            if(window.location.pathname === '/home'){
                 container.remove();
             }else {
                 window.location.pathname = '/home';

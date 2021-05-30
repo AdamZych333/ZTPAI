@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <head>
-    <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/add.css') }}">
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/add.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+    {% endblock %}
     <title>ADD</title>
 </head>
 <body>

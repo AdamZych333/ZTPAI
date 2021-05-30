@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll(".info>.fa-times-circle");
+const comButtons = document.querySelectorAll(".info>.fa-times-circle");
 const slug = document.querySelector(".meme").id;
 
 function deleteCom(){
@@ -14,4 +14,4 @@ function deleteCom(){
     })
 }
 
-buttons.forEach(button => button.addEventListener("click", deleteCom));
+comButtons.forEach(button => button.addEventListener("click", deleteCom));

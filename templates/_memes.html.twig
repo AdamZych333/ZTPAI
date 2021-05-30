@@ -1,5 +1,7 @@
-<script src="{{ asset('js/statistics.js') }}" type="text/javascript" defer></script>
-<script src="{{ asset('js/memes.js') }}" type="text/javascript" defer></script>
+{% block javascrepist %}
+    <script src="{{ asset('js/statistics.js') }}" type="text/javascript" defer></script>
+    <script src="{{ asset('js/memes.js') }}" type="text/javascript" defer></script>
+{% endblock %}
 <div class="memes">
     {% for meme in memes %}
         <div class="meme" id="{{ meme.getSlug }}">

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet"/>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+    {% endblock %}
     <title>Log in!</title>
 </head>
 <body>

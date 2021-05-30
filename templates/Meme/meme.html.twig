@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/meme.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-    <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/memes.js') }}" type="text/javascript" defer></script>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/meme.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/comments.js') }}" type="text/javascript" defer></script>
+        <script src="{{ asset('js/memes.js') }}" type="text/javascript" defer></script>
+        <script src="{{ asset('js/statistics.js') }}" type="text/javascript" defer></script>
+    {% endblock %}
     <title>MEME</title>
 </head>
 <body>
