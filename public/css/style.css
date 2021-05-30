@@ -132,3 +132,13 @@ header{
 .fa-thumbs-up>span:hover, .fa-thumbs-down>span:hover{
     cursor: default;
 }
+
+.fa-times-circle{
+    font-size: 1em;
+    color: #b44b46;
+}
+
+.fa-times-circle:hover{
+    color: #f53833;
+    cursor: pointer;
+}

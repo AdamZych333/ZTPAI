@@ -34,7 +34,7 @@ class MemeController extends AbstractController
     }
 
     /**
-     * @Route("/meme/{slug}", name="meme")
+     * @Route("/meme/{slug}", name="meme", methods={"POST", "GET"})
      * @param Request $request
      * @param Meme $meme
      * @param CommentRepository $commentRepository
@@ -76,7 +76,8 @@ class MemeController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function addMeme(Request $request){
+    public function addMeme(Request $request): Response
+    {
         $meme = new Meme();
         $form = $this->createForm(MemeFormType::class, $meme);
         $form->handleRequest($request);
@@ -107,7 +108,30 @@ class MemeController extends AbstractController
     }
 
     /**
-     * @Route("/meme/{slug}/like", name="like")
+     * @Route("/meme/{slug}", name="delete_meme", methods={"DELETE"})
+     * @param Request $request
+     * @param Meme $meme
+     * @param MemeRepository $memeRepository
+     * @return Response
+     */
+    public function deleteMeme(Request $request, Meme $meme, MemeRepository $memeRepository): Response
+    {
+        if($request->getMethod() == "GET"){
+            return $this->redirectToRoute("home");
+        }
+        $user = $this->getUser();
+        if($meme->getCreatedBy() == $user or $this->isGranted("ROLE_ADMIN")){
+            $file_path = $this->getParameter('uploads_dir') ."/". $meme->getImage();
+            unlink($file_path);
+            $this->entityManager->remove($meme);
+            $this->entityManager->flush();
+            return new JsonResponse("", Response::HTTP_OK);
+        }
+        return new JsonResponse("", Response::HTTP_UNAUTHORIZED);
+    }
+
+    /**
+     * @Route("/meme/{slug}/like", name="like", methods={"POST"})
      * @param Request $request
      * @param Meme $meme
      * @param LikeRepository $likeRepository
@@ -153,7 +177,7 @@ class MemeController extends AbstractController
     }
 
     /**
-     * @Route("/meme/{slug}/dislike", name="dislike")
+     * @Route("/meme/{slug}/dislike", name="dislike", methods={"POST"})
      * @param Request $request
      * @param Meme $meme
      * @param DislikeRepository $dislikeRepository

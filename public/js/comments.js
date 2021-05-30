@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll(".fa-times-circle");
+const buttons = document.querySelectorAll(".info>.fa-times-circle");
 const slug = document.querySelector(".meme").id;
 
 function deleteCom(){

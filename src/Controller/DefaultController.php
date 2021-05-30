@@ -29,7 +29,7 @@ class DefaultController extends AbstractController
     public function top10(MemeRepository $memeRepository): Response
     {
         return $this->render('TOP10/top10.html.twig', [
-            'memes' => $memeRepository->findBy([], ['likes' => 'DESC'])
+            'memes' => $memeRepository->findAll()
         ]);
     }
 }
