@@ -3,9 +3,11 @@
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{{ asset('css/top10.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        <link rel="shortcut icon" href="#">
     {% endblock %}
     {% block javascripts %}
         <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/ranking.js') }}" type="text/javascript" defer></script>
     {% endblock %}
     <title>TOP10</title>
 </head>
@@ -18,7 +20,7 @@
                 <div id="Day">Day</div>
                 <div id="Week">Week</div>
                 <div id="Month">Month</div>
-                <div id="All time">All time</div>
+                <div id="All-time">All time</div>
             </div>
             {{ include('_memes.html.twig') }}
         </section>

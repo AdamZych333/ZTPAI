@@ -13,6 +13,7 @@ use App\Repository\CommentRepository;
 use App\Repository\DislikeRepository;
 use App\Repository\LikeRepository;
 use App\Repository\MemeRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -47,7 +48,7 @@ class MemeController extends AbstractController
         $comment = new Comment();
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() && $form->isValid() && $this->getUser() != null){
             $comment->setMeme($meme);
             /** @var User $user */
             $user = $this->getUser();
@@ -72,12 +73,56 @@ class MemeController extends AbstractController
     }
 
     /**
+     * @Route("/top10/{interval}", name="ranking", methods={"GET"})
+     * @param Request $request
+     * @param String $interval
+     * @param MemeRepository $memeRepository
+     * @return Response
+     */
+     public function getRanking(Request $request,
+                                String $interval,
+                                MemeRepository $memeRepository
+     ){
+         switch ($interval){
+             case 'Day':
+                 $memes = $memeRepository->findByRatingAndDate(1);
+                 break;
+             case 'Week':
+                 $memes = $memeRepository->findByRatingAndDate(7);
+                 break;
+             case 'Month':
+                 $memes = $memeRepository->findByRatingAndDate(30);
+                 break;
+             default:
+                 $memes = $memeRepository->findByRating();
+         }
+
+         $array = array();
+         foreach ($memes as $meme){
+             $array[] = array(
+                 'id' => $meme->getId(),
+                 'title' => $meme->getTitle(),
+                 'created_at' => $meme->getCreatedAt(),
+                 'image' => $meme->getImage(),
+                 'slug' => $meme->getSlug(),
+                 'user' => $meme->getCreatedBy()->getEmail(),
+                 'likes' => $meme->getLikes()->count(),
+                 'dislikes' => $meme->getDislikes()->count()
+             );
+         }
+         return new JsonResponse($array, Response::HTTP_OK, ['Content-Type', 'application/json']);
+     }
+
+    /**
      * @Route("/add", name="add_meme")
      * @param Request $request
      * @return Response
      */
     public function addMeme(Request $request): Response
     {
+        if($this->getUser() == null){
+            return $this->redirectToRoute("app_login");
+        }
         $meme = new Meme();
         $form = $this->createForm(MemeFormType::class, $meme);
         $form->handleRequest($request);
