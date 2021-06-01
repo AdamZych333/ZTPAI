@@ -20,6 +20,14 @@ class MemeRepository extends ServiceEntityRepository
         parent::__construct($registry, Meme::class);
     }
 
+    public function findByQuery($query){
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.title LIKE :query')
+            ->setParameter('query', '%'. $query .'%')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findByRating(){
         $entityManager = $this->getEntityManager();
         $query = $entityManager->createQuery(

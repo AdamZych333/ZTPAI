@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll('.sort>div');
-const container = document.querySelector('.memes')
+const container = document.querySelector('.memes');
 
 function sort(){
     const interval = this.getAttribute('id');

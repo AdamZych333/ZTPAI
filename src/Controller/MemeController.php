@@ -16,6 +16,7 @@ use App\Repository\MemeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -69,6 +70,21 @@ class MemeController extends AbstractController
                 'previous' => $offset - CommentRepository::PAGINATOR_PER_PAGE,
                 'next' => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
                 'comment_form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/search", name="search")
+     * @param Request $request
+     * @param MemeRepository $memeRepository
+     * @return Response
+     */
+    public function searchMemes(Request $request, MemeRepository $memeRepository): Response
+    {
+        $query = $request->query->get('q', "");
+
+        return $this->render('Search/search.html.twig', [
+            'memes' => $memeRepository->findByQuery($query)
         ]);
     }
 
