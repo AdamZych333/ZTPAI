@@ -11,38 +11,33 @@
     border-radius: 2em;
 }
 
-.add{
+#meme_form{
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2em;
+    font-size: 1.5em;
 }
 
-.add input, button{
-    text-align: center;
+#meme_form > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 1em 0;
-    font-size: 1.7em;
 }
 
-.add input, button:focus{
-    outline: none;
-}
-
-.title{
+#meme_form_title{
+    border-radius: 2em;
     height: 2em;
-    width: 30vw;
-    border-radius: 1em;
 }
 
-.upload:hover{
-    cursor: pointer;
-}
-
-.add button {
+#meme_form_save{
     background: #6ca5c4;
     border: 1px solid #6790ff;
+    width: 5em;
+    height: 3em;
 }
 
-.add button:hover {
+#meme_form_save:hover {
     cursor: pointer;
 }

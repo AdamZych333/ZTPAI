@@ -41,6 +41,9 @@ function createMeme(meme){
     likes.innerHTML = meme.likes;
     const dislikes = clone.querySelector('.fa-thumbs-down>span');
     dislikes.innerHTML = meme.dislikes;
+    likes.parentElement.addEventListener("click", giveLike);
+    dislikes.parentElement.addEventListener("click", giveDislike);
+
 
     container.appendChild(clone);
 }
