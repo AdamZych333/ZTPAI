@@ -22,7 +22,7 @@ class MemeRepository extends ServiceEntityRepository
 
     public function findByQuery($query){
         return $this->createQueryBuilder('m')
-            ->andWhere('m.title LIKE :query')
+            ->andWhere('upper(m.title) LIKE upper(:query)')
             ->setParameter('query', '%'. $query .'%')
             ->getQuery()
             ->getResult();
@@ -33,7 +33,7 @@ class MemeRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             "SELECT m
             FROM App\Entity\Meme m
-            JOIN m.likes l
+            LEFT JOIN m.likes l
             GROUP BY m.id
             ORDER BY count(l.id) DESC"
         );
@@ -48,7 +48,7 @@ class MemeRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             "SELECT m
             FROM App\Entity\Meme m
-            JOIN m.likes l
+            LEFT JOIN m.likes l
             WHERE m.created_at >= :date
             GROUP BY m.id
             ORDER BY count(l.id) DESC"

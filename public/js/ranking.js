@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll('.sort>div');
+const sortButtons = document.querySelectorAll('.sort>div');
 const container = document.querySelector('.memes');
 
 function sort(){
@@ -44,8 +44,7 @@ function createMeme(meme){
     likes.parentElement.addEventListener("click", giveLike);
     dislikes.parentElement.addEventListener("click", giveDislike);
 
-
     container.appendChild(clone);
 }
 
-buttons.forEach(button => button.addEventListener("click", sort));
+sortButtons.forEach(button => button.addEventListener("click", sort));
