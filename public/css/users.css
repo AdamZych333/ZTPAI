@@ -5,6 +5,10 @@
     padding: 0 2vw 4vh 2vw;
 }
 
+.main-container > p{
+    font-size: 3em;
+}
+
 .find{
     display: flex;
     justify-content: center;

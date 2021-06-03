@@ -90,13 +90,11 @@ class MemeController extends AbstractController
 
     /**
      * @Route("/top10/{interval}", name="ranking", methods={"GET"})
-     * @param Request $request
      * @param String $interval
      * @param MemeRepository $memeRepository
      * @return Response
      */
-     public function getRanking(Request $request,
-                                String $interval,
+     public function getRanking(String $interval,
                                 MemeRepository $memeRepository
      ){
          switch ($interval){

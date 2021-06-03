@@ -14,6 +14,9 @@
     <main>
         {{ include('_header.html.twig') }}
         <section class="main-container">
+            {% if memes|length == 0 %}
+                <p> No memes found! </p>
+            {% endif %}
             {{ include('_memes.html.twig') }}
         </section>
     </main>

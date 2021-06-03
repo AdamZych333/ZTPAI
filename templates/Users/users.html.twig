@@ -6,6 +6,7 @@
     {% endblock %}
     {% block javascripts %}
         <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/searchUser.js') }}" type="text/javascript" defer></script>
     {% endblock %}
     <title>USERS</title>
 </head>
@@ -19,6 +20,9 @@
                     <input placeholder="Find user">
                 </form>
             </div>
+            {% if users|length == 0 %}
+                <p> No users found! </p>
+            {% endif %}
             <div class="users">
                 {% for user in users %}
                     <div class="user">
@@ -33,3 +37,13 @@
         </section>
     </main>
 </body>
+
+<template class="users-template">
+        <div class="user">
+            <img src="">
+            <div class="info">
+                <h1>email</h1>
+                <h2>date</h2>
+            </div>
+        </div>
+</template>

@@ -1,7 +1,12 @@
 .main-container{
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 5em 10em;
+}
+
+.main-container > p{
+    font-size: 3em;
 }
 
 .meme{

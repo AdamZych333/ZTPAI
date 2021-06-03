@@ -8,9 +8,9 @@ top10:
 
 user:
   path: /users
-  controller: App\Controller\UserController::index
+  controller: App\Controller\UserController::users
 
 add:
   path: /add
-  controller: App\Controller\DefaultController::add
+  controller: App\Controller\MemeController::addMeme
 
