@@ -13,12 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MemeRepository::class)
- * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups"="meme:list"}}},
- *     itemOperations={"get"={"normalization_context"={"groups"="meme:item"}}},
- *     order={"createdAt"="DESC"},
- *     paginationEnabled=false
- * )
+ * @ApiResource()
  */
 class Meme
 {
@@ -33,37 +28,27 @@ class Meme
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
-     * @Groups({"meme:list", "meme:item"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="date")
-     *
-     * @Groups({"meme:list", "meme:item"})
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
-     * @Groups({"meme:list", "meme:item"})
      */
     private $image;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
-     *
-     * @Groups({"meme:list", "meme:item"})
      */
     private $created_by;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="meme", orphanRemoval=true)
-     *
-     * @Groups({"meme:list", "meme:item"})
      */
     private $comments;
 

@@ -2,10 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
-use App\Entity\Meme;
-use App\Entity\User;
-use App\Form\CommentFormType;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -49,7 +45,7 @@ class CommentController extends AbstractController
         if($comment->getAuthor() == $user or $this->isGranted("ROLE_ADMIN")){
             $this->entityManager->remove($comment);
             $this->entityManager->flush();
-            return new JsonResponse("", Response::HTTP_OK);
+            return new JsonResponse("", Response::HTTP_NO_CONTENT);
         }
         return new JsonResponse("", Response::HTTP_UNAUTHORIZED);
 

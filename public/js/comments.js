@@ -8,7 +8,7 @@ function deleteCom(){
     fetch(`/meme/${slug}/comments/${id}`, {
         method: "DELETE"
     }).then(function (response){
-        if(response.status === 200){
+        if(response.status === 204){
             container.remove();
         }
     })

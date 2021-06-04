@@ -17,12 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="`user`")
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
- * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups"="user:list"}}},
- *     itemOperations={"get"={"normalization_context"={"groups"="user:item"}}},
- *     order={"createdAt"="DESC"},
- *     paginationEnabled=false
- * )
+ * @ApiResource()
  */
 class User implements UserInterface
 {
@@ -30,8 +25,6 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     *
-     * @Groups({"user:list", "user:item"})
      */
     private $id;
 
@@ -39,37 +32,27 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\Email
      * @Assert\NotBlank
-     *
-     * @Groups({"user:list", "user:item"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
-     *
-     * @Groups({"user:list", "user:item"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     *
-     * @Groups({"user:list", "user:item"})
      */
     private $password;
 
     /**
      * @ORM\Column(type="datetime")
-     *
-     * @Groups({"user:list", "user:item"})
      */
     private $joinedAt;
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
-     * @Groups({"user:list", "user:item"})
      */
     private $image;
 

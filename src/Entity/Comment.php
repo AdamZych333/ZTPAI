@@ -12,13 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
  * @ORM\HasLifecycleCallbacks()
- *
- * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups"="comment:list"}}},
- *     itemOperations={"get"={"normalization_context"={"groups"="comment:item"}}},
- *     order={"createdAt"="DESC"},
- *     paginationEnabled=false
- * )
+ * @ApiResource()
  */
 class Comment
 {
@@ -26,39 +20,29 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     *
-     * @Groups({"comment:list", "comment:item"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     *
-     * @Groups({"comment:list", "comment:item"})
      */
     private $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
-     *
-     * @Groups({"comment:list", "comment:item"})
      */
     private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity=Meme::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
-     *
-     * @Groups({"comment:list", "comment:item"})
      */
     private $meme;
 
     /**
      * @ORM\Column(type="datetime")
-     *
-     * @Groups({"comment:list", "comment:item"})
      */
     private $createdAt;
 

@@ -6,7 +6,7 @@ function deleteMeme(){
     fetch(`/meme/${slug}`, {
         method: "DELETE"
     }).then(function (response){
-        if(response.status === 200){
+        if(response.status === 204){
             if(window.location.pathname === '/home'){
                 container.remove();
             }else {

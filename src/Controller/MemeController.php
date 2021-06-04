@@ -13,10 +13,8 @@ use App\Repository\CommentRepository;
 use App\Repository\DislikeRepository;
 use App\Repository\LikeRepository;
 use App\Repository\MemeRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -184,7 +182,7 @@ class MemeController extends AbstractController
             unlink($file_path);
             $this->entityManager->remove($meme);
             $this->entityManager->flush();
-            return new JsonResponse("", Response::HTTP_OK);
+            return new JsonResponse("", Response::HTTP_NO_CONTENT);
         }
         return new JsonResponse("", Response::HTTP_UNAUTHORIZED);
     }
