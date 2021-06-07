@@ -19,6 +19,15 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
+            ->add('name', null, [
+                'mapped' => false
+            ])
+            ->add('surname', null, [
+                'mapped' => false
+            ])
+            ->add('phone', null, [
+                'mapped' => false
+            ])
             ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

@@ -18,6 +18,9 @@
 
             {{ form_start(registrationForm) }}
             {{ form_row(registrationForm.email, {'attr': {'placeholder': 'email'}, 'label': false}) }}
+            {{ form_row(registrationForm.name, {'attr': {'placeholder': 'name'}, 'label': false}) }}
+            {{ form_row(registrationForm.surname, {'attr': {'placeholder': 'surname'}, 'label': false}) }}
+            {{ form_row(registrationForm.phone, {'attr': {'placeholder': 'phone'}, 'label': false}) }}
             {{ form_row(registrationForm.plainPassword.first, {'attr': {'placeholder': 'password'}, 'label': false}) }}
             {{ form_row(registrationForm.plainPassword.second, {'attr': {'placeholder': 'confirm password'}, 'label': false}) }}
 
