@@ -32,6 +32,10 @@
     width: 12vw;
 }
 
+#meme_form_title:focus{
+    outline: none;
+}
+
 #meme_form_save{
     background: #6ca5c4;
     border: 1px solid #6790ff;
