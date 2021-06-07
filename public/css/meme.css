@@ -97,9 +97,14 @@
 }
 
 #comment_form_content{
+    border: black solid 2px;
     width: 30vw;
     height: 20vh;
     resize: none;
+}
+
+#comment_form_content:focus{
+    outline: none;
 }
 
 

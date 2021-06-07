@@ -103,7 +103,10 @@ header{
     color: gray;
     margin: 0;
     box-sizing: border-box;
+}
 
+.search-bar>form>input:focus{
+    outline: none;
 }
 
 .main-container{

@@ -37,6 +37,9 @@ function createMeme(meme){
     date.innerHTML = meme.created_at.date.slice(0, 10);
     const email = clone.querySelector('#email');
     email.innerHTML = meme.user;
+    const comments = clone.querySelector(".social-section>a");
+    comments.innerHTML = `Comments(${meme.comments})`;
+    comments.href = `/meme/${meme.slug}`;
     const likes = clone.querySelector('.fa-thumbs-up>span');
     likes.innerHTML = meme.likes;
     const dislikes = clone.querySelector('.fa-thumbs-down>span');

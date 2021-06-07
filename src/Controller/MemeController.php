@@ -118,6 +118,7 @@ class MemeController extends AbstractController
                  'image' => $meme->getImage(),
                  'slug' => $meme->getSlug(),
                  'user' => $meme->getCreatedBy()->getEmail(),
+                 'comments' => $meme->getComments()->count(),
                  'likes' => $meme->getLikes()->count(),
                  'dislikes' => $meme->getDislikes()->count()
              );
@@ -228,8 +229,6 @@ class MemeController extends AbstractController
         $this->entityManager->persist($meme);
         $this->entityManager->flush();
 
-        $response->headers->set('Content-Type', 'text/plain');
-
         return $response;
     }
 
@@ -274,8 +273,6 @@ class MemeController extends AbstractController
         }
         $this->entityManager->persist($meme);
         $this->entityManager->flush();
-
-        $response->headers->set('Content-Type', 'text/plain');
 
         return $response;
     }

@@ -18,7 +18,7 @@ class MemeFormType extends AbstractType
             ->add('title')
             ->add('image', FileType::class, [
                 'mapped' => false,
-                'label' => 'Pleas upload an image'
+                'label' => 'Upload an image'
             ])
             ->add('save', SubmitType::class)
         ;

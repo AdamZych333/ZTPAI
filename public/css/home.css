@@ -29,6 +29,10 @@
     width: 100%;
 }
 
+.meme img:hover{
+    outline: #0d5aa7 solid 2px;
+}
+
 .info{
     width: 30vw;
     display: flex;
