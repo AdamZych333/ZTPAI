@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/meme.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/comments.js') }}" type="text/javascript" defer></script>
+        <script src="{{ asset('js/memes.js') }}" type="text/javascript" defer></script>
+        <script src="{{ asset('js/statistics.js') }}" type="text/javascript" defer></script>
+    {% endblock %}
+    <title>MEME</title>
+</head>
+<body>
+    {{ include('_nav.html.twig') }}
+    <main>
+        {{ include('_header.html.twig') }}
+        <section class="main-container">
+            <div class="meme" id="{{ meme.getSlug }}">
+                <div>
+                    <h1>
+                        {{ meme.getTitle }}
+                        {% if app.user == meme.createdBy or is_granted('ROLE_ADMIN') %}
+                            <i class="fas fa-times-circle"></i>
+                        {% endif %}
+                    </h1>
+                </div>
+                <img src="/uploads/{{ asset(meme.getImage) }}">
+                <div class="description">
+                    <h2>{{ meme.getCreatedBy.getEmail }}</h2>
+                    <h2>{{ meme.getCreatedAt|date("d-m-Y") }}</h2>
+                </div>
+                <div class="social-section">
+                    <div>
+                        <i class="fas fa-thumbs-up">
+                            <span>{{ meme.getLikes|length }}</span>
+                        </i>
+                    </div>
+                    <div>
+                        <i class="fas fa-thumbs-down">
+                            <span>{{ meme.getDislikes|length }}</span>
+                        </i>
+                    </div>
+                </div>
+            </div>
+            <div class="comments">
+                {% if comments|length > 0 %}
+                    {% for comment in comments %}
+                        <div class="comment" id="{{ comment.getId }}">
+                            <img src="/img/users/{{ asset(comment.getAuthor.getImage) }}">
+                            <div>
+                                <div class="info">
+                                    <p>{{ comment.getAuthor.getEmail }}</p>
+                                    <p>{{ comment.getCreatedAt|date() }}</p>
+                                    {% if app.user == comment.getAuthor or is_granted('ROLE_ADMIN') %}
+                                        <i class="fas fa-times-circle"></i>
+                                    {% endif %}
+                                </div>
+                                <p> {{ comment.getContent }} </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="pages">
+                        {% if previous >= 0 %}
+                            <a href="{{ path('meme', {'slug':meme.getSlug, 'offset':previous}) }}">PREVIOUS</a>
+                        {% endif %}
+                        {% if next < comments|length %}
+                            <a href="{{ path('meme', {'slug':meme.getSlug, 'offset':next}) }}">NEXT</a>
+                        {% endif %}
+                    </div>
+                {% else %}
+                <p>No comments have been posted yet.</p>
+                {% endif %}
+                <p>Add comment.</p>
+                {{ form(comment_form) }}
+            </div>
+        </section>
+    </main>
+</body>

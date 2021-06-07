@@ -1,0 +1,113 @@
+.main-container{
+    padding: 5em 10em;
+}
+
+.meme{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #777676 0% 0% no-repeat padding-box;
+    padding: 2em;
+    margin: 1em 0 3em 0;
+}
+
+.meme img{
+    height: auto;
+    width: 90%;
+}
+
+.meme h1{
+    font-size: 3em;
+    margin: 0.5em 0;
+}
+
+.description, .social-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.description h2{
+    margin: 0.5em 0;
+}
+
+.social-section > a{
+    color: black;
+}
+
+.comment{
+    display: flex;
+    margin: 2vh 0;
+}
+
+.comment img{
+    width: 5vw;
+}
+
+.comment>div{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5vw;
+}
+
+.comment>div>p{
+    margin-left: 1vw;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    font-weight: bold;
+}
+.info > p{
+    margin: 0 1vw 0 0;
+}
+
+.pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.pages > a{
+    color: white;
+    border: none;
+}
+
+.pages > a:hover{
+    color: #7080FA;
+    cursor: pointer;
+}
+
+.add-comment{
+    height: 10vh;
+    width: 20vw;
+}
+
+.info>a{
+    height: 1em;
+    display: flex;
+    align-content: center;
+}
+
+.required{
+    display: none;
+}
+
+#comment_form_content{
+    border: black solid 2px;
+    width: 30vw;
+    height: 20vh;
+    resize: none;
+}
+
+#comment_form_content:focus{
+    outline: none;
+}
+
+
+
+
+

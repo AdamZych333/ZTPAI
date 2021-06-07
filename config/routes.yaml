@@ -1,0 +1,16 @@
+home:
+  path: /home
+  controller: App\Controller\DefaultController::home
+
+top10:
+  path: /top10
+  controller: App\Controller\DefaultController::top10
+
+user:
+  path: /users
+  controller: App\Controller\UserController::users
+
+add:
+  path: /add
+  controller: App\Controller\MemeController::addMeme
+

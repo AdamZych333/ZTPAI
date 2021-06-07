@@ -1,0 +1,44 @@
+.main-container{
+    display: flex;
+    justify-content: center;
+    padding: 7em
+}
+
+.add-container{
+    width: fit-content;
+    height: fit-content;
+    background: #717398 0% 0% no-repeat padding-box;
+    border-radius: 2em;
+}
+
+#meme_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 1.5em;
+    font-size: 1.5em;
+}
+
+#meme_form > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.7em 0;
+}
+
+#meme_form_title{
+    border-radius: 2em;
+    height: 2em;
+    width: 12vw;
+}
+
+#meme_form_save{
+    background: #6ca5c4;
+    border: 1px solid #6790ff;
+    width: 5em;
+    height: 3em;
+}
+
+#meme_form_save:hover {
+    cursor: pointer;
+}

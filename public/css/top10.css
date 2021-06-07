@@ -1,0 +1,89 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    padding: 0 10em 5em 10em;
+}
+
+.sort{
+    display: flex;
+    justify-content: space-around;
+    margin: 3em 2em;
+}
+
+.sort > div{
+    padding: .9rem 1.7rem;
+    color: #ffffff;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    background: hsl(0, 0%, 12%);
+    border: solid 1px #1e1e1e;
+    box-shadow: inset 0 0 0 2px #ffffff;
+    margin-right: 1em;
+}
+
+.sort > div:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    background: var(hsl(0, 0%, 20%));
+    box-shadow: inset 0 0 0 4px #ffffff;
+}
+
+.sort > div:active {
+    background: hsl(0, 0%, 30%);
+}
+
+.sort > div:visited {
+    background: hsl(0, 0%, 20%);
+}
+
+.meme{
+    display: flex;
+    background: #777676 0% 0% no-repeat padding-box;
+    padding: 2em;
+    margin: 1em 0 3em 0;
+}
+
+.meme > a{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-right: 2em;
+    width: 60%;
+}
+
+.meme img{
+    height: auto;
+    width: 100%;
+}
+
+.meme img:hover{
+    outline: #0d5aa7 solid 2px;
+}
+
+.info{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2em;
+}
+
+.info h1{
+    font-size: 2.5em;
+    margin: 0.5em 0;
+}
+
+.description, .social-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.description h2{
+    margin: 0.5em 0;
+}
+
+.social-section > a{
+    color: black;
+}

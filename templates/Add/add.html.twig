@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/add.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+    {% endblock %}
+    <title>ADD</title>
+</head>
+<body>
+    {{ include('_nav.html.twig') }}
+    <main>
+        {{ include('_header.html.twig') }}
+        <section class="main-container">
+            <div class="add-container">
+                {{ form(meme_form) }}
+            </div>
+        </section>
+    </main>
+</body>

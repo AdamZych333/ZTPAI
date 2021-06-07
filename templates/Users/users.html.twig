@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/users.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://kit.fontawesome.com/50659eceb1.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/searchUser.js') }}" type="text/javascript" defer></script>
+    {% endblock %}
+    <title>USERS</title>
+</head>
+<body>
+    {{ include('_nav.html.twig') }}
+    <main>
+        {{ include('_header.html.twig') }}
+        <section class="main-container">
+            <div class="find">
+                <form>
+                    <input placeholder="Find user">
+                </form>
+            </div>
+            {% if users|length == 0 %}
+                <p> No users found! </p>
+            {% endif %}
+            <div class="users">
+                {% for user in users %}
+                    <div class="user">
+                        <img src="img/users/{{ asset(user.getImage) }}">
+                        <div class="info">
+                            <h1>{{ user.getEmail }}</h1>
+                            <h2>{{ user.getJoinedAt|date("d-m-Y") }}</h2>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+
+<template class="users-template">
+        <div class="user">
+            <img src="">
+            <div class="info">
+                <h1>email</h1>
+                <h2>date</h2>
+            </div>
+        </div>
+</template>
