@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\UserDetails;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,6 +58,11 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user_details = new UserDetails();
+            $user_details->setName($form->get('name')->getData());
+            $user_details->setSurname($form->get('surname')->getData());
+            $user_details->setPhone($form->get('phone')->getData());
+            $user->setUserDetails($user_details);
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -67,6 +73,7 @@ class SecurityController extends AbstractController
             $user->setImage('avatar.jpg');
 
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user_details);
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email

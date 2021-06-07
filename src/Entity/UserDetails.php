@@ -72,4 +72,8 @@ class UserDetails
 
         return $this;
     }
+
+    public function __toString(): string{
+        return "ud:". $this->id;
+    }
 }
