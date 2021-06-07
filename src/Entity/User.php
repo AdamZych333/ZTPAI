@@ -66,6 +66,12 @@ class User implements UserInterface
      */
     private $dislikes;
 
+    /**
+     * @ORM\OneToOne(targetEntity=UserDetails::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user_details;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
@@ -251,6 +257,18 @@ class User implements UserInterface
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getUserDetails(): ?UserDetails
+    {
+        return $this->user_details;
+    }
+
+    public function setUserDetails(UserDetails $user_details): self
+    {
+        $this->user_details = $user_details;
 
         return $this;
     }
