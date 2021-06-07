@@ -28,6 +28,12 @@ class Meme
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 30,
+     *     minMessage = "Your title must be at least {{ limit }} characters long",
+     *     maxMessage = "Your title cannot be longer than {{ limit }} characters"
+     * )
      */
     private $title;
 
